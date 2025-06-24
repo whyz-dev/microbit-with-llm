@@ -68,7 +68,6 @@ class ImageAgent:
         print("🧠 GPT-4o에게 분류 요청 중...")
         response = self.llm.invoke(messages)
         color = response.content.strip().lower()
-        print(response)
 
         # 색상 리스트 검증 (예: red, green, yellow, blue)
         valid_colors = ["red", "green", "yellow", "blue", "orange", "brown"]
