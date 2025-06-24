@@ -1,5 +1,6 @@
 import serial
 import serial.tools.list_ports
+import os
 import time
 
 def send_to_microbit(direction: str):
@@ -11,7 +12,7 @@ def send_to_microbit(direction: str):
 
     try:
         # 시리얼 포트 연결
-        SERIAL_PORT = 'COM3'
+        SERIAL_PORT = os.getenv("MICROBIT_PORT")
         BAUD_RATE = 115200
         with serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1) as ser:
             # 명령어에 줄 바꿈 문자를 추가하여 전송
