@@ -1,10 +1,15 @@
 import serial
+import serial.tools.list_ports
 import time
 
-# 환경에 따라 변경해줘야 함
-SERIAL_PORT = "/dev/COM3"  # Windows라면 "COM3", Mac은 "/dev/cu.usbmodem..."
-BAUD_RATE = 115200
 
+def find_microbit_port():
+    ports = serial.tools.list_ports.comports()
+    for port in ports:
+        desc = port.description.lower()
+        if "microbit" in desc or "usb serial device" in desc or "mbed" in desc:
+            return port.device  # 예: "COM3" 또는 "/dev/cu.usbmodem..."
+    return None
 
 def send_to_microbit(direction: str):
     """
@@ -15,6 +20,8 @@ def send_to_microbit(direction: str):
 
     try:
         # 시리얼 포트 연결
+        SERIAL_PORT = find_microbit_port()
+        BAUD_RATE = 115200
         with serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1) as ser:
             # 명령어에 줄 바꿈 문자를 추가하여 전송
             ser.write((direction + "\n").encode())
