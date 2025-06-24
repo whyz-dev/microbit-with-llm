@@ -2,15 +2,6 @@ import serial
 import serial.tools.list_ports
 import time
 
-
-def find_microbit_port():
-    ports = serial.tools.list_ports.comports()
-    for port in ports:
-        desc = port.description.lower()
-        if "microbit" in desc or "usb serial device" in desc or "mbed" in desc:
-            return port.device  # 예: "COM3" 또는 "/dev/cu.usbmodem..."
-    return None
-
 def send_to_microbit(direction: str):
     """
     방향 ('left' 또는 'right')을 micro:bit로 전송합니다.
@@ -20,7 +11,7 @@ def send_to_microbit(direction: str):
 
     try:
         # 시리얼 포트 연결
-        SERIAL_PORT = find_microbit_port()
+        SERIAL_PORT = 'COM3'
         BAUD_RATE = 115200
         with serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1) as ser:
             # 명령어에 줄 바꿈 문자를 추가하여 전송
