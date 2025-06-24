@@ -1,6 +1,6 @@
 # control/runner.py
 
-from agent.ImageAgent_mac import ImageAgent
+from agent.ImageAgent import ImageAgent
 from control.microbit import send_to_microbit
 
 

@@ -2,7 +2,7 @@ import serial
 import time
 
 # 환경에 따라 변경해줘야 함
-SERIAL_PORT = "/dev/tty.usbmodem1102"  # Windows라면 "COM3", Mac은 "/dev/cu.usbmodem..."
+SERIAL_PORT = "/dev/COM3"  # Windows라면 "COM3", Mac은 "/dev/cu.usbmodem..."
 BAUD_RATE = 115200
 
 
