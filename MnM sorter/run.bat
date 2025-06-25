@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set VENV_DIR=.venv
+set VENV_DIR=mnm
 
 if not exist %VENV_DIR%\Scripts\activate.bat (
     echo Creating virtual environment...
